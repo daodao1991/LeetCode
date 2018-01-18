@@ -1,0 +1,69 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<stdlib.h>
+
+using namespace std;
+
+
+class Solution {
+public:
+
+	string longestPalindrome(string s)
+	{
+		string::size_type ans = 0;
+		string str,ch;
+		vector<string> t;
+		for (string::size_type i = 0; i < s.size(); i++)
+		{
+			for (string::size_type j = i + 1; j <= s.size(); j++)
+			{
+				str = s.substr(i, j - i);
+				if (str.size()>1 && IsPalindromic(str))
+				{
+					ans = ans>str.size() ? ans : str.size();
+					t.push_back(str);
+					for (string::size_type k = 0; k < t.size(); k++)
+					{
+						if (t[k].size() == ans) { return t[k]; }
+					}
+
+				}
+
+
+			}
+		}
+
+		ch = "No Palindromic";
+		return ch;
+	}
+
+
+	bool IsPalindromic(string &a)
+		//不分奇偶，判断一个字符串是否为Palindromic结构
+	{
+		for (string::size_type i = 0; i != a.size() / 2; ++i)
+		{
+			if (a[i] != a[a.size() - i - 1])
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+};
+
+int main()
+{
+	Solution Obj;
+	string tt, str;
+	cin >> tt;
+
+	str = Obj.longestPalindrome(tt);
+	cout << str << endl;
+
+	system("pause");
+	return 0;
+}
