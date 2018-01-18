@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int res = 0;
+      for(int i = 0; i < s.size()-1; i++)
+          for(int j = i + 1; j < s.size(); j++)
+              if(AllUniqe(s, i, j))
+              {
+                  res = res>(j-i)?res:(j-i);
+              }
+        
+        return res;
+    }
+    
+    
+    bool AllUniqe(string s, int start, int end)
+    {
+        
+        vector<char> charvec;
+        vector<char>::iterator it;
+        
+        for(int i = start; i < end; i++)
+        {
+            char ch = s[i];
+            it = find(charvec.begin(), charvec.end(), ch);
+            
+            if(it == charvec.end()) //说明没找到重复的
+            {
+                charvec.push_back(ch);
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+        
+        return true;    
+    }
+};
