@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string convert(string s, int numRows) 
+    {
+        int index;
+        string result;
+        
+        if(numRows <= 1 || s.size() <= 1) {return s;}
+        for(int i = 0; i < numRows; i++)  //numRows代表分了多少行，按行去遍历
+        {
+            for(int j = 0, index = i;  index < s.size();  j++, index = 2*(numRows-1)*j + i)
+            {
+                result.append(1,s[index]);     //每一行竖列上的元素下标
+                
+                if(i == 0 || i  == numRows-1)  {continue;}    //首尾行一定不存在对角线元素         
+                if(index + 2*(numRows - i -1) <s.size())
+                {
+                    index = index + 2*(numRows - i -1);  //对角线上元素的下标
+                    result.append(1,s[index]);
+                }
+            }
+        }
+        
+        return result;
+        
+    }
+};
