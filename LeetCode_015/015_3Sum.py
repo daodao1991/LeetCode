@@ -25,9 +25,9 @@ def threeSum(nums):
 
     return res
 
-#a = input("请输入一个整数列表：")
-a = [-1, 0, 1, 2, -1, -4]
-result = threeSum(a)
+a = input("请输入一个整数列表：").split()
+b = [int(x) for x in a]
+result = threeSum(b)
 print(result)
 
 os.system('pause')
