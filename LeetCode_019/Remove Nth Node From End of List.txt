@@ -1,0 +1,25 @@
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if(!head->next) return NULL;
+        
+        ListNode *first = head, *second = head;
+        
+        for(int i=0; i < n; ++i)
+        {
+            first = first->next;
+        }
+        
+        if(!first)  return head->next; //若此时second为空，说明链表长度为N，则要删除的元素是头结点
+        
+        while(first->next)
+        {
+            first = first->next;
+            second = second->next;
+        }
+        //此时second指向第N+1个元素
+        second->next = second->next->next;
+        
+        return head;
+    }
+};
