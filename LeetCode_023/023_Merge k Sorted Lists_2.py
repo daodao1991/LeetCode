@@ -9,19 +9,6 @@ class ListNode():
         self.next = None
 
 class Solution():
-    def mergeKLists(self, lists):
-        if(len(lists) == 0):
-            return None
-        n = len(lists)
-        while(n > 1):
-            k = (n+1)//2
-            for i in range(n//2):
-                lists[i]  = mergeTwoLists(lists[i], lists[i+k])
-            n = k
-
-        return lists[0]
-
-
     def mergeTwoLists(self, l1, l2):
         result = cur = ListNode(0)
         while(l1 and l2):
@@ -37,3 +24,18 @@ class Solution():
         cur.next = l1 or l2
 
         return result.next
+    
+    def mergeKLists(self, lists):
+        if(len(lists) == 0):
+            return None
+        n = len(lists)
+        while(n > 1):
+            k = (n+1)//2
+            for i in range(n//2):
+                lists[i]  = self.mergeTwoLists(lists[i], lists[i+k])
+            n = k
+
+        return lists[0]
+
+
+
