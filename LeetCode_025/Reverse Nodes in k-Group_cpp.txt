@@ -1,0 +1,38 @@
+class Solution{
+public:
+	ListNode* reverseKGroup(ListNode *head, int k)
+	{
+		if(head == NULL || head->next == NULL || k < 2)		return head;
+		
+		ListNode *next_Group = head;
+		for(int i = 0; i < k; i++)
+		{
+			if(next_Group)
+				next_Group = next_Group->next;
+			else
+				return head;
+		}
+		//向前移动了k次以后，next_Group就变成了下一组的第一个结点
+		
+		
+		ListNode *new_next_Group = reverseKGroup(next_Group, k);  //递归反转后面的链表
+		
+		
+		ListNode *pre = NULL, *cur = head, *next = NULL;
+		while(cur != next_Group)
+		{
+			next = cur->next;
+			cur->next = pre ? pre : new_next_Group;
+			//巧妙之处在于，在改动当前结点与后继结点的连接之前，都会用一个变量next保存当前的后继结点
+			pre = cur;
+			cur = next;
+		}
+		
+		return pre;
+	
+	}
+
+
+
+
+};
