@@ -1,0 +1,57 @@
+class Solution {
+public:
+    void InitializeMap(map<string, int>& MAP, vector<string>& words)
+    {
+        for(int i = 0; i < words.size(); ++i)
+        {
+            if(MAP.count(words[i]) == 0)    
+                MAP[words[i]] == 1;
+            else
+                MAP[words[i]] += 1;
+        }
+            
+    }
+    
+    vector<int> findSubstring(string s, vector<string>& words) {
+        vector<int>  res;
+        int l_singleword = words[0].length();
+        int l_words = words.size(); 
+        int l_s = s.size();
+        
+        int j, count = l_words;
+        bool countchange = false;
+        
+        for(int i = 0; i <= l_s - l_singleword*l_words; ++i)
+        {
+            j = i;
+            map<string, int>  Map;
+            InitializeMap(Map, words);
+                
+            string ss = s.substr(j, l_singleword);
+            
+            while(Map.count(ss) != 0  &&  Map[ss] != 0  &&  j + l_singleword <= l_s)
+            {
+                Map[ss] -= 1;
+                count--;
+                countchange = true;
+                
+                j = j + l_singleword;
+                ss = s.substr(j, l_singleword);
+            }
+            
+            if(count == 0)   res.push_back(i);
+            
+            if(countchange)     
+            {
+                Map.clear();
+                InitializeMap(Map, words);
+                count = l_words;
+                countchange = false;
+            }
+                        
+        }
+        
+        return res;
+        
+    }
+};
