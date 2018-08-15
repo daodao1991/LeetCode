@@ -13,24 +13,24 @@ public:
 		int L = nums.size();
 		int distanceMax, pos, index;
 
-		/*Í¨¹ı·ÖÎö¿ÉÖª£¬½«ÈİÆ÷ÖĞµÄÔªËØÒÔ×î´óÖµÎª½ç·ÖÎªÁ½²¿·Ö£¬
-		ÕâÁ½²¿·ÖµÄÎ»ĞòÇó·¨ÊÇ²»Í¬µÄ*/
+		/*é€šè¿‡åˆ†æå¯çŸ¥ï¼Œå°†å®¹å™¨ä¸­çš„å…ƒç´ ä»¥æœ€å¤§å€¼ä¸ºç•Œåˆ†ä¸ºä¸¤éƒ¨åˆ†ï¼Œ
+		è¿™ä¸¤éƒ¨åˆ†çš„ä½åºæ±‚æ³•æ˜¯ä¸åŒçš„*/
 
-		//Ê×ÏÈÍ¨¹ıº¯Êımax_element()ÕÒµ½ÈİÆ÷ÖĞµÄ×î´óÖµµÄÎ»Ğò,Æä·µ»ØµÄÊÇµü´úÆ÷
+		//é¦–å…ˆé€šè¿‡å‡½æ•°max_element()æ‰¾åˆ°å®¹å™¨ä¸­çš„æœ€å¤§å€¼çš„ä½åº,å…¶è¿”å›çš„æ˜¯è¿­ä»£å™¨
 		auto max = max_element(nums.begin(), nums.end());
-		distanceMax = distance(nums.begin(), max); //distance()·µ»ØÁ½¸öµü´úÆ÷Ö®¼äµÄ¾àÀë
+		distanceMax = distance(nums.begin(), max); //distance()è¿”å›ä¸¤ä¸ªè¿­ä»£å™¨ä¹‹é—´çš„è·ç¦»
 
-		it = find(nums.begin(), nums.end(), target);//ÖØĞÂÅÅĞòÇ°Ä¿±êÖµÔÚÈİÆ÷ÖĞµÄÎ»Ğò		
+		it = find(nums.begin(), nums.end(), target);//é‡æ–°æ’åºå‰ç›®æ ‡å€¼åœ¨å®¹å™¨ä¸­çš„ä½åº		
 		if (it != nums.end()) {
-			//¶ÔÈİÆ÷copy½øĞĞÖØĞÂÅÅĞò£¬´ÓĞ¡µ½´ó
+			//å¯¹å®¹å™¨copyè¿›è¡Œé‡æ–°æ’åºï¼Œä»å°åˆ°å¤§
 			sort(copy.begin(), copy.end());
 			it1 = find(copy.begin(), copy.end(), target);
 			pos = distance(copy.begin(), it1);
 
-			if (it <= max) {  //Çó×î´óÖµÇ°µÄÔªËØµÄÎ»Ğò
-				index = pos- (L - (distanceMax+1)); //×¢Òâ´Ë´¦distanceMaxÎª¾àÀë
+			if (it <= max) {  //æ±‚æœ€å¤§å€¼å‰çš„å…ƒç´ çš„ä½åº
+				index = pos- (L - (distanceMax+1)); //æ³¨æ„æ­¤å¤„distanceMaxä¸ºè·ç¦»
 			}
-			else {  //Çó×î´óÖµºóµÄÔªËØµÄÎ»Ğò
+			else {  //æ±‚æœ€å¤§å€¼åçš„å…ƒç´ çš„ä½åº
 				index = pos + (distanceMax+1);
 			}
 			return index;
@@ -47,7 +47,7 @@ int main()
 	vector<int> vec = { 5,7,13,25,0,1,3 };
 	int index, value;
 
-	cout << "ÇëÊäÈëÒ»¸öÄ¿±êÖµvalue£º" << endl;
+	cout << "è¯·è¾“å…¥ä¸€ä¸ªç›®æ ‡å€¼valueï¼š" << endl;
 	cin >> value;
 	index = Obj.search(vec, value);
 	cout << index << endl;
