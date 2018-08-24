@@ -12,6 +12,7 @@ public:
 		while (lo < hi) {
 			int mid = (lo + hi) / 2;
 			if ((nums[0] > target) ^ (nums[0] > nums[mid]) ^ (target > nums[mid]))
+				/*此处异或符号^的运用有些难理解，以后可以慢慢思考*/
 				lo = mid + 1;
 			else
 				hi = mid;
