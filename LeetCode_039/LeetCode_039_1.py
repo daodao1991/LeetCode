@@ -30,15 +30,23 @@ class Solution:
         if target < 0:
             return
         elif target == 0:
-            print(temp)
-            res.append(temp)
-            #print(res)
+            #res.append(temp)
+            '''
+            此处，当想把符合条件的temp通过append方法添加到res中时，事实上添加的
+            是temp对象的引用，所以当最下边执行temp.pop()时，temp的改变会反应到
+            res中，即res也发生了更新。
+
+            所以正确的方法是，把此处的temp转换为一个新的对象，使得此处添加的temp
+            和下边的temp不产生关联，即如下：
+            '''
+            res.append(list(temp))
+            #或者res.append(temp+[])
         else:
             for i in range(start, len(candidates)):
                 temp.append(candidates[i])
                 self.combinationSumDFS(candidates, target-candidates[i], i, temp, res)
                 temp.pop()
-        print(['##'] + res)
+
 
 obj = Solution()
 nums = [2, 3, 6, 7]
