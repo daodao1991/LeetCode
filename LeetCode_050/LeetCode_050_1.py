@@ -10,8 +10,7 @@ class Solution:
         if n == 0:
             return 1     
         # n分为奇数偶数
-        m = int(n/2)
-        half = self.myPow(x, m)
+        half = self.myPow(x, int(n/2))
         if n%2 == 0:  
             res = half*half
             return res
