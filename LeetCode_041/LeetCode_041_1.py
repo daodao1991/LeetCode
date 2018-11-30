@@ -22,7 +22,7 @@ class Solution:
         #此时的情况应该是，前面几位都是大于0的数，只要大于0，说明该下标对应的数出现过
         #直到出现0，则该位置下标即为要寻找的那个缺失的最小的正整数
         for i in range(1,len(nums)):
-            if nums[i]/n==0:
+            if nums[i]//n==0:
                 return i
         return n
 
